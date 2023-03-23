@@ -5,7 +5,7 @@
 #define IRON_BALL_MASS 0.1 // massa della pallina di ferro
 #define MAGNETIC_FORCE_CONSTANT 0.0001 // costante di forza magnetica
 #define TIME_STEP 0.01 // passo temporale dell'algoritmo
-#define SIMULATION_TIME 500.0 // tempo totale di simulazione
+#define SIMULATION_TIME 50.0 // tempo totale di simulazione
 static mlx_image_t* image;
 
 typedef struct {
@@ -52,10 +52,10 @@ void simulate(Object2D* object, Vector2D magnetPosition) {
 }
 
 #include <stdio.h>
-
+#include <unistd.h>
 int main() {
-    //mlx_t* mlx;
-    ///mlx = mlx_init(600, 600, "MLX42", true);
+   // mlx_t* mlx;
+    //mlx = mlx_init(600, 600, "MLX42", true);
   //  image = mlx_new_image(mlx, 600, 600);
 
     Object2D object = {
@@ -68,7 +68,8 @@ int main() {
     while (currentTime < SIMULATION_TIME) {
         simulate(&object, magnetPosition);
         currentTime += TIME_STEP;
-        printf("Object position: (%f, %f)\n", object.position.x, object.position.y);
+        printf("Object position: (%d, %d)\n", (int)object.position.x, (int)object.position.y);
+        usleep(500);
         //mlx_put_pixel(image, (int)object.position.x, (int)object.position.y, 0xFFFFFF);
       // mlx_image_to_window(mlx, image, 0, 0);
 
